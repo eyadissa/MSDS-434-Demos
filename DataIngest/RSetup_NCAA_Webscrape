@@ -1,0 +1,24 @@
+R on ubuntu
+https://towardsdatascience.com/r-studio-server-on-google-cloud-dd69b8bff80b
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install r-base r-base-dev
+
+sudo apt-get install gdebi-core
+wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5019-amd64.deb
+sudo gdebi rstudio-server-1.2.5019-amd64.deb
+sudo apt-get install libcurl4-openssl-dev libssl-dev libxml2-dev
+
+sudo apt-get install r-cran-stringi
+sudo apt-get install r-cran-stringr
+sudo apt-get install r-cran snakecase
+sudo apt-get install r-cran-snakecase
+sudo apt-get install r-cran-selectr
+sudo apt-get install r-cran-rvest
+sudo apt-get install r-cran-tidyr
+
+Rscript update_data.R
+
+You may need to run this before 
+sudo rm -r /usr/local/lib/R/site-library/00LOCK-hoopR

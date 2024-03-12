@@ -1,0 +1,33 @@
+git clone       https://github.com/GoogleCloudPlatform/data-science-on-gcp
+## I have already cloned the books repostiory so I'll just open it
+cd data-science-on-gc
+ cd 02_ingest/
+
+##I'll make a new data directory for demonstration
+mkdir data2
+Cp download.sh data2
+
+## Now I'll grab the data from BTS with a for loop and the dounload.sh script
+for MONTH in 'seq 1 12'; do bash download.sh 2016 $MONTH; done
+
+##use python to take a subset of the rows of the data
+Cp 201601.csv 201601.bck
+Rm *.csv
+F=open("201601.bck").readlines()
+F[0]
+
+Fout = open("201601.csv", "w")
+For I in range(5000)
+	Fout.write(f[i])
+
+Back to bash
+Cat 201601.csv
+
+## create a bucket in GUI
+gsutil cp -m cp *.csv gs//[bucket]
+
+#make a container to bring into BigQuery
+bq mk eh_d2_tainer
+bq load --autodetect --source_format=CSV eh_d4_tainer.flight_auto gsi//eh-d4/201501.csv
+ 
+#Bring up the BigQuery in the GUI and run a SQL query
