@@ -1,0 +1,93 @@
+package main
+
+import (
+    "fmt"
+    "net/http"
+    "github.com/gorilla/mux"
+    "io/ioutil"
+    "os"
+    "encoding/json"
+
+
+)
+game_date string "json: game_date"
+team_name string "json: team_name"
+team_winner,
+total_rebounds,
+field_goals_attempted,
+free_throws_attempted,
+steals
+
+//Product defines a structure for an item in product catalog
+type GameData struct {
+    GameDate string `json:"game_date"`
+    TeamName string `json:"team_name"`
+    TeamWinner string `json:"team_winner"`
+    TotalRebounds string `json:"total_rebounds"`
+    FieldGoalsAttempted string `json:"field_goals_attempted"`
+    FreeThrowsAttempted string `json:"free_throws_attempted"`
+    Steals string `json:"steals"`
+}
+
+// GetProductHandler is used to get data inside the products defined on our product catalog
+func GetProductHandler() http.HandlerFunc {
+        return func(rw http.ResponseWriter, r * http.Request) {
+            // Read JSON file
+            data, err: = ioutil.ReadFile("./data/data.json")
+            if err != nil {
+                    rw.WriteHeader(http.StatusInternalServerError)
+                    return
+                }
+                //Unmarshal into a variable
+            var d GameData
+            err: = json.Unmarshal(data, & d)
+
+            //put the marshalled JSON data in an environment variables
+            err: = os.Setenv("date_input", d.GameDate)
+            if err != nil {
+                fmt.Println("Error setting game_input:", err)
+                return
+            }
+            err: = os.Setenv("team_input, d.TeamName
+                if err != nil {
+                    fmt.Println("Error setting team_input:", err)
+                    return
+                }
+
+                // run the bq command makes a new ML input table
+                err: = exec.Command(set_input.sh) if err != nil {
+                    fmt.Println("Error setting ML input:", err)
+                        //log.Fatal(err)
+                }
+
+                pred_out, err: = exec.Command(predict.sh).Output
+                if err != nil {
+                    fmt.Println("Error setting ML input:", err)
+                        //log.Fatal(err)
+                }
+
+                // Write the body with JSON data
+                rw.Header().Add("content-type", "application/json") rw.WriteHeader(http.StatusFound) rw.Write(pred_out)
+            }
+        }
+
+
+
+        // Create new Router
+
+        func main() {
+            // Create new Router
+            router: = mux.NewRouter()
+
+            // route properly to respective handlers
+                router.Handle("/", GetProductHandler()).Methods("GET")
+
+            // Create new server and assign the router
+                server: = http.Server {
+                Addr: ":9090",
+                Handler: router,
+            }
+            fmt.Println("Staring Product Catalog server on Port 9090")
+            // Start Server on defined port/host.
+            server.ListenAndServe()
+        }
